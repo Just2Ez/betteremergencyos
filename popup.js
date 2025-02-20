@@ -103,6 +103,24 @@ async function resetConfiguration() {
   window.close()
 }
 
+async function exportConfiguration() {
+  let exportConfig = JSON.stringify(currentConfig)
+  navigator.clipboard.writeText(exportConfig)
+  console.log("COPIED CONFIGURATION TO CLIPBOARD", exportConfig)
+}
+
+async function importConfiguration() {
+  const importfield = document.getElementById("importfield")
+  if (importfield.value != "" && importfield.value.startsWith("{")) {
+    let loadedConfig = JSON.parse(importfield.value)
+    await setStorageData({ beos_config: loadedConfig})
+    console.log("SAVED IMPORTED CONFIGURATION", loadedConfig)
+    window.close()
+  } else {
+    console.log("IMPORT NOT VALID.",importfield.value)
+  }
+}
+
 async function createElements() {
   // Generate Parameter Elements
   for (let parameter in currentConfig.Parameter) {
@@ -125,9 +143,14 @@ window.onload = async function() {
   await loadConfiguration() // Load Configuration from LocalStorage
   await createElements() // Create Elements from loaded Configuration
 
-  // Button Click-Events
+  // Einstellungen Buttons
   document.getElementById('save').addEventListener('click', saveConfiguration);
   document.getElementById('resetdefault').addEventListener('click', resetConfiguration);
+
+  document.getElementById('export').addEventListener('click', exportConfiguration);
+  document.getElementById('import').addEventListener('click', importConfiguration);
+
+  // Hinzufügen von Vorlage
   document.getElementById('addParameter').addEventListener('click', () => {
     addParameter("{platzhalter}", "Dieser Text ersetzt den Platzhalter.")
   });

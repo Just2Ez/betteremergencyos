@@ -16,11 +16,16 @@
       }
 
       #buttonsDiv {
-        padding-top: 10vh;
-        padding-bottom: 5vh;
+        padding-top: 5vh;
+        padding-bottom: 3vh;
       }
 
       #settingsDiv {
+        display: flex;
+        justify-content: center;
+      }
+
+      #configDiv {
         display: flex;
         justify-content: center;
       }
@@ -71,6 +76,12 @@
     <div id="settingsDiv">
       <p>Parameter aktiviert:</p>
       <input type="checkbox" id="replaceParameter">
+    </div>
+
+    <input id="importfield" type="text" placeholder="Konfiguration hier einfügen...">
+    <div id="configDiv">
+      <button id="import">LOAD FROM INPUT</button>
+      <button id="export">EXPORT TO CLIPBOARD</button>
     </div>
 
     <div id="buttonsDiv">
