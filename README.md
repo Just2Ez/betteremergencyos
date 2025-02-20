@@ -42,7 +42,7 @@ Die Konfiguration findet über das integrierte PopUp statt.
 
 **2. Das Menü ermöglicht diverse Anpassungen.**
 
-<img src="https://i.imgur.com/mIJZFU9.png" width="50%">
+<img src="https://i.imgur.com/VlFdJzk.png" width="50%">
 
 ### <ins>Akten</ins>
 Aktenvorlagen können erstellt und anschließend als Vorlage abgespeichert werden.
@@ -69,6 +69,9 @@ Parameter sind innerhalb der Aktenvorlagen (mehrfach) verwendbar und werden mit 
 ### <ins>Einstellungen</ins>
 
 - **`Parameter aktiviert`**: Falls aktiviert, werden die Parameter in einer Aktenvorlage mit den oben hinterlegten Werten ersetzt. Hilfreich für das Erstellen von eigenen Aktenvorlagen.
+- **`LOAD FROM INPUT`**: Lädt die darüber eingefügte Konfiguration. Ermöglicht das Laden einer Konfiguration eines anderen Nutzer.\
+  (***ACHTUNG**: Ausschließlich über `EXPORT TO CLIPBOARD` exportierte Konfigurationen sind einfügbar.*)
+- **`EXPORT TO CLIPBOARD`**: Kopiert die aktuell gespeicherte Konfiguration in die Zwischenablage. Ermöglicht das Teilen der Konfiguration mit anderen Nutzern.
 
 ## Contact
 
