@@ -63,6 +63,11 @@ Parameter sind innerhalb der Aktenvorlagen (mehrfach) verwendbar und werden mit 
 
 **`{dienstnummer}`**: Der Platzhalter für den Parameter. (Beispiel: *"Meine Dienstnummer ist {dienstnummer}."* -> *"Meine Dienstnummer ist FIB-XX."*)
 
+Folgende Parameter sind dauerhaft verwendbar und werde automatisch aktualisiert:
+
+- **`{datum}`**: Das aktuelle Datum im Format "DD.MM.YYYY".
+- **`{zeit}`**: Die aktuelle Uhrzeit im Format "hh:mm".
+
 > [!NOTE]
 > Weitere Parameter können nach belieben erstellt werden und sind anschließend in den Aktenvorlagen verwendbar.
 
