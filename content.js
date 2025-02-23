@@ -6,7 +6,6 @@
 // /Functions/Police/Function_NOL/AddCrime.php -> Akte erstellen
 // /Functions/Police/Function_Ticket/index.php -> Ticketsystem
 
-
 let currentConfig = undefined
 
 const permanentParameter = {
@@ -22,6 +21,15 @@ function drowdownHeight(selector) {
     }
   } else {
     setTimeout(drowdownHeight, 300, selector)
+  }
+}
+
+function editorHeight() {
+  const element = document.getElementById("editor")
+  if (element) {
+    element.style.height = "100%"
+  } else {
+    setTimeout(editorHeight, 300)
   }
 }
 
@@ -109,6 +117,7 @@ async function init() {
       // Aktensystem
       case "/Functions/Police/Function_NOL/AddCrime.php":
         drowdownHeight(techConfig.selectorAkteDropdown)
+        editorHeight()
         getUniqueInformation()
         for (let akte in currentConfig.Akten) {
           // Load Template
