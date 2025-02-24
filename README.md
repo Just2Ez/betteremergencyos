@@ -48,7 +48,7 @@ Die Konfiguration findet über das integrierte PopUp statt.
 
 <img src="https://i.imgur.com/t1LcaaV.png" width="20%">
 
-***TIPP:*** *Das anpinnen der Erweiterung vereinfacht die Benutzung.*
+***TIPP:*** *Das Anpinnen der Erweiterung vereinfacht die Benutzung.*
 
 <img src="https://i.imgur.com/aXKFtYy.png" width="20%">
 
