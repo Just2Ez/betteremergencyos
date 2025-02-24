@@ -5,14 +5,11 @@
 // IFRAMES:
 // /Functions/Police/Function_NOL/AddCrime.php -> Akte erstellen
 // /Functions/Police/Function_Ticket/index.php -> Ticketsystem
+// /Functions/Police/Function_NOL/OffenderDetail.php -> OffenderDetails
 
 let currentConfig = undefined
 
-const permanentParameter = {
-  "{datum}": undefined, // Wird automatisch in getUniqueInformation() aktualisiert.
-  "{zeit}": undefined // Wird automatisch in getUniqueInformation() aktualisiert.
-}
-
+// Modify height of dropdown for chosing laws
 function drowdownHeight(selector) {
   const element = document.querySelector(selector)
   if (element) {
@@ -24,6 +21,7 @@ function drowdownHeight(selector) {
   }
 }
 
+// Modify height of editor, so it scales with length of case
 function editorHeight() {
   const element = document.getElementById("editor")
   if (element) {
@@ -33,6 +31,22 @@ function editorHeight() {
   }
 }
 
+// Modify height of dropdown for chosing laws
+async function getSuspectInformation() {
+  const suspectNameElement = document.querySelector("#myModal > div > div > div.modal-body > a > b")
+  const suspectBirthElement = document.querySelector("body > div.app-inner > div.app-inner-body > div > div:nth-child(1) > div.col > div:nth-child(3) > div > a.normalAncer")
+  if (suspectNameElement && suspectBirthElement) {
+    // Save suspect data to LocalStorage
+    await setStorageData({ beos_suspect: {
+      name: suspectNameElement.innerText, birth: suspectBirthElement.innerText
+    }})
+    console.log("SAVED SUSPECT.", `${suspectNameElement.innerText} - ${suspectBirthElement.innerText}`)
+  } else {
+    setTimeout(getSuspectInformation, 300)
+  }
+}
+
+// Refresh permanent Parameters
 async function getUniqueInformation() {
   const date = new Date();
 
@@ -47,22 +61,42 @@ async function getUniqueInformation() {
   stunden = stunden.toString().padStart(2, '0');
   minuten = minuten.toString().padStart(2, '0');
   permanentParameter["{zeit}"] = `${stunden}:${minuten}`;
+
+  // Suspect
+  let { beos_suspect } = await getStorageData("beos_suspect")
+  if (typeof beos_suspect === "undefined") {
+      // No Suspect found -> Adding default to Storage
+      await setStorageData({ beos_suspect: {
+        name: "Vorname Nachname",
+        birth: "DD.MM.YYYY"
+      }})
+      permanentParameter["{suspectName}"] = "Vorname Nachname"
+      permanentParameter["{suspectBirth}"] = "DD.MM.YYYY"
+      console.log("NO SUSPECT FOUND. SETTING DEFAULT.")
+  } else {
+      // Suspect found
+      permanentParameter["{suspectName}"] = beos_suspect.name
+      permanentParameter["{suspectBirth}"] = beos_suspect.birth
+      console.log("LOADED SUSPECT", `${permanentParameter["{suspectName}"]} - ${permanentParameter["{suspectBirth}"]}`)
+  }
 }
 
+// Insert template in editor
 function insertAkte(templateAkte) {
   const element1 = document.querySelector(techConfig.selectorAkteTextField[0])
   const element2 = document.querySelector(techConfig.selectorAkteTextField[1])
   if (element1) {
     element1.innerHTML = templateAkte
-    console.log("BetterEmergencyOS: Akte erfolgreich eingefügt. [element1]")
+    console.log("TEMPLATE INSERTED IN EDITOR. [element1]")
   } else if (element2) {
     element2.innerHTML = templateAkte
-    console.log("BetterEmergencyOS: Akte erfolgreich eingefügt. [element2]")
+    console.log("TEMPLATE INSERTED IN EDITOR. [element2]")
   } else {
     setTimeout(insertAkte, 300, templateAkte)
   }
 }
 
+// Add a button for template
 function addTemplateButton(label, akte) {
   const element = document.querySelector(techConfig.selectorAkteField)
   if (element) {
@@ -82,6 +116,7 @@ function addTemplateButton(label, akte) {
   }
 }
 
+// Add a button for copying current template
 function addCopyButton() {
   const element = document.querySelector(techConfig.selectorAkteField)
   if (element) {
@@ -95,8 +130,7 @@ function addCopyButton() {
     newButton.addEventListener('click', function () {
       const element = document.querySelector(techConfig.selectorAkteTextField[1])
       navigator.clipboard.writeText(element.innerHTML)
-      console.log(element.innerHTML)
-      console.log("COPIED TO CLIPBOARD.")
+      console.log("COPIED TEMPLATE TO CLIPBOARD.", element.innerHTML)
     });
     element.appendChild(newButton);
   } else {
@@ -104,14 +138,14 @@ function addCopyButton() {
   }
 }
 
+// INITIATE
 async function init() {
   if (techConfig.allowedPathnames.includes(window.location.pathname)) {
-    // Load Configuration from LocalStorage
-    console.log("LOADING CONFIGURATION")
-    await loadConfiguration()
+    console.log(`BetterEmergencyOS RUNNING IN '${window.location.pathname}'.`)
 
-    console.log("BetterEmergencyOS: RUNNING")
-    console.log(window.location.pathname)
+    // Load Configuration from LocalStorage
+    await loadConfiguration()
+    console.log("CONFIGURATION LOADED.")
 
     switch (window.location.pathname) {
       // Aktensystem
@@ -144,10 +178,14 @@ async function init() {
       case "/Functions/Police/Function_Ticket/index.php":
         drowdownHeight(techConfig.selectorTicketDropdown)
         break;
+      case "/Functions/Police/Function_NOL/OffenderDetail.php":
+        getSuspectInformation()
+        break;
     }
   }
 }
 
+// Initate, when site is fully loaded
 document.onreadystatechange = function () {
   if (document.readyState == "complete") {
     init()

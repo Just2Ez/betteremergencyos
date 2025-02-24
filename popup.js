@@ -2,6 +2,7 @@
 
 let currentConfig = undefined
 
+// Add Parameter to PopUp
 async function addParameter(placeholder, value) {
   const element = document.getElementById("allParameter")
   if (element) {
@@ -33,6 +34,7 @@ async function addParameter(placeholder, value) {
   }
 }
 
+// Add Akte to PopUp
 async function addAkte(buttonName, template) {
   const element = document.getElementById("allAkten")
   if (element) {
@@ -64,63 +66,34 @@ async function addAkte(buttonName, template) {
   }
 }
 
-async function saveConfiguration() {
-  // Convert Parameter Elements to currentConfig
-  const allParameterDiv = document.getElementById("allParameter")
-  currentConfig.Parameter = []
-  for (let i = 0; i < allParameterDiv.children.length; i++) {
-    const parameter = allParameterDiv.children[i];
-    currentConfig.Parameter.push({
-      placeholder: parameter.querySelector("#parameter_placeholder").value,
-      value: parameter.querySelector("#parameter_value").value
-    })
-  }
-
-  // Convert Akten Elements to currentConfig
-  const allAktenDiv = document.getElementById("allAkten")
-  currentConfig.Akten = []
-  for (let i = 0; i < allAktenDiv.children.length; i++) {
-    const akte = allAktenDiv.children[i];
-    currentConfig.Akten.push({
-      buttonName: akte.querySelector("#akte_buttonName").value,
-      template: akte.querySelector("#akte_template").value
-    })
-  }
-
-  // Get Checkbox for replaceParameter
-  const replaceParameterInput = document.getElementById("replaceParameter")
-  currentConfig.replaceParameter = replaceParameterInput.checked
-
-  // Save to LocalStorage
-  await setStorageData({ beos_config: currentConfig})
-  console.log("SAVED CONFIGURATION", currentConfig)
-  window.close()
-}
-
+// Clear Configuration from LocalStorage
 async function resetConfiguration() {
   chrome.storage.local.clear()
-  console.log("CLEARING CONFIGURATION")
+  console.log("CLEARING CONFIGURATION.")
   window.close()
 }
 
+// Export Configuration to Clipboard
 async function exportConfiguration() {
   let exportConfig = JSON.stringify(currentConfig)
   navigator.clipboard.writeText(exportConfig)
-  console.log("COPIED CONFIGURATION TO CLIPBOARD", exportConfig)
+  console.log("COPIED CONFIGURATION TO CLIPBOARD.", exportConfig)
 }
 
+// Import Configuration from Input
 async function importConfiguration() {
   const importfield = document.getElementById("importfield")
   if (importfield.value != "" && importfield.value.startsWith("{")) {
     let loadedConfig = JSON.parse(importfield.value)
     await setStorageData({ beos_config: loadedConfig})
-    console.log("SAVED IMPORTED CONFIGURATION", loadedConfig)
+    console.log("SAVED IMPORTED CONFIGURATION.", loadedConfig)
     window.close()
   } else {
     console.log("IMPORT NOT VALID.",importfield.value)
   }
 }
 
+// Generate all Elements for PopUp
 async function createElements() {
   // Generate Parameter Elements
   for (let parameter in currentConfig.Parameter) {
@@ -139,7 +112,8 @@ async function createElements() {
   replaceParameterInput.checked = currentConfig.replaceParameter
 }
 
-window.onload = async function() {
+// INITIATE
+async function init() {
   await loadConfiguration() // Load Configuration from LocalStorage
   await createElements() // Create Elements from loaded Configuration
 
@@ -157,4 +131,11 @@ window.onload = async function() {
   document.getElementById('addAkte').addEventListener('click', () => {
     addAkte("Name des Buttons", `Aktenvorlage -> Strg + V nach COPY-Button`)
   });
+}
+
+// Initate, when site is fully loaded
+document.onreadystatechange = function () {
+  if (document.readyState == "complete") {
+    init()
+  }
 }

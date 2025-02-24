@@ -5,7 +5,7 @@ const techConfig = {
     selectorAkteTextField: ["#editor > div.ql-editor.ql-blank", "#editor > div.ql-editor"],
     selectorAkteField: "body > form > div > div.app-inner-body > div > div:nth-child(3) > div > div > div",
     selectorTicketDropdown: "body > form > div > div.app-inner-body > div > div.cal-form > div:nth-child(2) > div > div > div > div.selectize-input.items.required.not-full.has-options",
-    allowedPathnames: ["/Functions/Police/Function_NOL/AddCrime.php", "/Functions/Police/Function_Ticket/index.php"],
+    allowedPathnames: ["/Functions/Police/Function_NOL/AddCrime.php", "/Functions/Police/Function_Ticket/index.php", "/Functions/Police/Function_NOL/OffenderDetail.php"],
     selectorDienstnummer: "body > form > div > div.app-inner-body > div > div:nth-child(4) > div:nth-child(2) > div > input[type=text]"
 }
 
@@ -37,6 +37,15 @@ let defaultConfig = {
     replaceParameter: true
 }
 
+// Wird automatisch in getUniqueInformation() aktualisiert.
+const permanentParameter = {
+  "{datum}": undefined,
+  "{zeit}": undefined,
+  "{suspectName}": "Vorname Nachname",
+  "{suspectBirth}": "DD.MM.YYYY"
+}
+
+// LocalStorage -> Get Values from LocalStorage
 const getStorageData = key =>
     new Promise((resolve, reject) =>
       chrome.storage.local.get(key, result =>
@@ -45,7 +54,8 @@ const getStorageData = key =>
             : resolve(result)
       )
     )
-  
+
+// LocalStorage -> Set Values for Key
 const setStorageData = data =>
     new Promise((resolve, reject) =>
       chrome.storage.local.set(data, () =>
@@ -55,6 +65,41 @@ const setStorageData = data =>
       )
     )
 
+// Save Configuration in LocalStorage
+async function saveConfiguration() {
+  // Convert Parameter Elements to currentConfig
+  const allParameterDiv = document.getElementById("allParameter")
+  currentConfig.Parameter = []
+  for (let i = 0; i < allParameterDiv.children.length; i++) {
+    const parameter = allParameterDiv.children[i];
+    currentConfig.Parameter.push({
+      placeholder: parameter.querySelector("#parameter_placeholder").value,
+      value: parameter.querySelector("#parameter_value").value
+    })
+  }
+
+  // Convert Akten Elements to currentConfig
+  const allAktenDiv = document.getElementById("allAkten")
+  currentConfig.Akten = []
+  for (let i = 0; i < allAktenDiv.children.length; i++) {
+    const akte = allAktenDiv.children[i];
+    currentConfig.Akten.push({
+      buttonName: akte.querySelector("#akte_buttonName").value,
+      template: akte.querySelector("#akte_template").value
+    })
+  }
+
+  // Get Checkbox for replaceParameter
+  const replaceParameterInput = document.getElementById("replaceParameter")
+  currentConfig.replaceParameter = replaceParameterInput.checked
+
+  // Save to LocalStorage
+  await setStorageData({ beos_config: currentConfig})
+  console.log("SAVED CONFIGURATION.", currentConfig)
+  window.close()
+}
+
+// Load Configuration from LocalStorage
 async function loadConfiguration() {
     let { beos_config } = await getStorageData("beos_config")
     if (typeof beos_config === "undefined") {

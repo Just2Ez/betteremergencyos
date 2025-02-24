@@ -10,6 +10,15 @@ Ursprünglich erstellt für [**NarcoCity**](https://discord.gg/narcocity), jedoc
 2. Entpacke die ZIP-Datei.
 3. Installiere die Extension in deinem Browser. **[chrome](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world?hl=de#load-unpacked)** **[opera](https://help.opera.com/en/extensions/testing/)**
 
+## Changelog
+
+**v1.8 - 24.02.2025:** Implementieren von {suspectName} und {suspectBirth}.
+**v1.7 - 23.02.2025:** Akteneditor skaliert nun korrekt mit der Länge der Akte.
+**v1.6 - 20.02.2025:** Importieren und Exportieren der Konfiguration ermöglicht Teilen mit Nutzern.
+**v1.5 - 19.02.2025:** Implementierung eines PopUp zur einfachen Konfiguration der Erweiterung.
+**v1.4 - 16.02.2025:** Deutliche Verbesserung der Benutzerfreundlichkeit durch vollständigen Rework.
+**v1.0 - 23.11.2024:** Initiierung von BetterEmergencyOS.
+
 ## Features
 
 ### <ins>Aktensystem</ins>
@@ -21,6 +30,10 @@ Ursprünglich erstellt für [**NarcoCity**](https://discord.gg/narcocity), jedoc
 - Auswahlliste für Straftaten skaliert nun richtig.
 
 <img src="https://i.imgur.com/vALoLWe.png" width="50%">
+
+- Akteneditor skaliert nun korrekt mit der Länge der Akte.
+
+<img src="https://i.imgur.com/W52tQri.png" width="50%">
 
 ### <ins>Ticketsystem</ins>
 
@@ -65,8 +78,10 @@ Parameter sind innerhalb der Aktenvorlagen (mehrfach) verwendbar und werden mit 
 
 Folgende Parameter sind dauerhaft verwendbar und werde automatisch aktualisiert:
 
-- **`{datum}`**: Das aktuelle Datum im Format "DD.MM.YYYY".
-- **`{zeit}`**: Die aktuelle Uhrzeit im Format "hh:mm".
+- **`{datum}`**: Aktuelles Datum. Format: "DD.MM.YYYY".
+- **`{zeit}`**: Aktuelle Uhrzeit. Format: "hh:mm".
+- **`{suspectName}`**: Name des Tatverdächtigen. Format: "Vorname Nachname".
+- **`{suspectBirth}`**:Geburtsdatum des Tatverdächtigen. Format: "DD.MM.YYYY".
 
 > [!NOTE]
 > Weitere Parameter können nach belieben erstellt werden und sind anschließend in den Aktenvorlagen verwendbar.

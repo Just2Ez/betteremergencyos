@@ -15,9 +15,13 @@
         outline: none;
       }
 
+      h1 {
+        margin-bottom: 0;
+      }
+
       #buttonsDiv {
-        padding-top: 5vh;
-        padding-bottom: 3vh;
+        padding-top: 1vh;
+        padding-bottom: 1vh;
       }
 
       #settingsDiv {
@@ -62,33 +66,64 @@
     </style>
   </head>
   <body>
+    <!-- PARAMETER -->
     <h1><u>Parameter</u></h1>
+    <!-- Permanent Parameter -->
+    <div id="parameter">
+      <input type="text" disabled="true" id="parameter_placeholder" value="{datum}">
+      <input type="text" disabled="true" id="parameter_value" value="DD.MM.YYYY">
+      <button disabled="true">X</button>
+    </div>
+    <div id="parameter">
+      <input type="text" disabled="true" id="parameter_placeholder" value="{zeit}">
+      <input type="text" disabled="true" id="parameter_value" value="hh:mm">
+      <button disabled="true">X</button>
+    </div>
+    <div id="parameter">
+      <input type="text" disabled="true" id="parameter_placeholder" value="{suspectName}">
+      <input type="text" disabled="true" id="parameter_value" value="Vorname Nachname">
+      <button disabled="true">X</button>
+    </div>
+    <div id="parameter">
+      <input type="text" disabled="true" id="parameter_placeholder" value="{suspectBirth}">
+      <input type="text" disabled="true" id="parameter_value" value="DD.MM.YYYY">
+      <button disabled="true">X</button>
+    </div>
+
+    <!-- Custom Parameter -->
     <div id="allParameter">
     </div>
     <button id="addParameter">+</button>
     
+    <!-- AKTENVORLAGEN -->
     <h1><u>Aktenvorlagen</u></h1>
+    <!-- Custom Aktenvorlagen -->
     <div id="allAkten">
     </div>
     <button id="addAkte">+</button>
 
+    <!-- EINSTELLUNGEN -->
     <h1><u>Einstellungen</u></h1>
+    <!-- Checkbox -->
     <div id="settingsDiv">
       <p>Parameter aktiviert:</p>
       <input type="checkbox" id="replaceParameter">
     </div>
 
+    <!-- Import/Export Configuration -->
     <input id="importfield" type="text" placeholder="Konfiguration hier einfügen...">
     <div id="configDiv">
       <button id="import">LOAD FROM INPUT</button>
       <button id="export">EXPORT TO CLIPBOARD</button>
     </div>
 
+    <!-- Save/Reset Configuration -->
     <div id="buttonsDiv">
       <button id="save">SAVE</button>
       <button id="resetdefault">RESET TO DEFAULT</button>
     </div>
     
+    <!-- Load Scripts -->
     <script src="util.js"></script>
     <script src="popup.js"></script>
   </body>
