@@ -3,7 +3,7 @@
   "name": "BetterEmergencyOS",
   "description": "Quality of Life changes for EmergencyOS. - discord: _just2ez",
   "author": "Just2Ez",
-  "version": "1.7",
+  "version": "1.8",
   "permissions": ["storage"],
   "action": {
     "default_title": "BetterEmergencyOS",
