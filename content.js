@@ -152,7 +152,7 @@ async function init() {
       case "/Functions/Police/Function_NOL/AddCrime.php":
         drowdownHeight(techConfig.selectorAkteDropdown)
         editorHeight()
-        getUniqueInformation()
+        await getUniqueInformation()
         for (let akte in currentConfig.Akten) {
           // Load Template
           template = currentConfig.Akten[akte].template
