@@ -1,7 +1,6 @@
 # BetterEmergencyOS
 
-Quality of Life Updates für [**EmergencyOS**](https://emergencyos.de). Behebt diverse Stylefehler und fügt Aktenvorlagen hinzu.
-
+Quality of Life Updates für [**EmergencyOS**](https://emergencyos.de). Behebt diverse Stylefehler und fügt Aktenvorlagen hinzu.\
 Ursprünglich erstellt für [**NarcoCity**](https://discord.gg/narcocity), jedoch verwendbar auf sämtliche Server, welche EmergencyOS verwenden. 
 
 ## Installation
@@ -12,11 +11,11 @@ Ursprünglich erstellt für [**NarcoCity**](https://discord.gg/narcocity), jedoc
 
 ## Changelog
 
-**v1.8 - 24.02.2025:** Implementieren von {suspectName} und {suspectBirth}.
-**v1.7 - 23.02.2025:** Akteneditor skaliert nun korrekt mit der Länge der Akte.
-**v1.6 - 20.02.2025:** Importieren und Exportieren der Konfiguration ermöglicht Teilen mit Nutzern.
-**v1.5 - 19.02.2025:** Implementierung eines PopUp zur einfachen Konfiguration der Erweiterung.
-**v1.4 - 16.02.2025:** Deutliche Verbesserung der Benutzerfreundlichkeit durch vollständigen Rework.
+**v1.8 - 24.02.2025:** Implementieren von {suspectName} und {suspectBirth}.\
+**v1.7 - 23.02.2025:** Akteneditor skaliert nun korrekt mit der Länge der Akte.\
+**v1.6 - 20.02.2025:** Importieren und Exportieren der Konfiguration ermöglicht Teilen mit Nutzern.\
+**v1.5 - 19.02.2025:** Implementierung eines PopUp zur einfachen Konfiguration der Erweiterung.\
+**v1.4 - 16.02.2025:** Deutliche Verbesserung der Benutzerfreundlichkeit durch vollständigen Rework.\
 **v1.0 - 23.11.2024:** Initiierung von BetterEmergencyOS.
 
 ## Features
@@ -24,7 +23,7 @@ Ursprünglich erstellt für [**NarcoCity**](https://discord.gg/narcocity), jedoc
 ### <ins>Aktensystem</ins>
 
 - Fügt Buttons hinzu, welche Aktenvorlagen automatisch einfügen.
-
+  
 <img src="https://i.imgur.com/kv2zYb8.png" width="50%">
 
 - Auswahlliste für Straftaten skaliert nun richtig.
