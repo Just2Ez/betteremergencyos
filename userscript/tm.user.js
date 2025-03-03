@@ -9,7 +9,9 @@
 // @grant GM.getValue
 // @grant GM.setValue
 // @grant GM.getResourceText
-// @resource settings https://pastebin.com/raw/x8ukRiek
+// @resource popup_script https://raw.githubusercontent.com/Just2Ez/betteremergencyos/refs/heads/dev/userscript/popup_script.js
+// @resource popup_body https://raw.githubusercontent.com/Just2Ez/betteremergencyos/refs/heads/dev/userscript/popup_body.html
+// @resource popup_style https://raw.githubusercontent.com/Just2Ez/betteremergencyos/refs/heads/dev/userscript/popup_style.css
 // ==/UserScript==
 
 
@@ -83,165 +85,24 @@ const permanentParameter = {
 async function createSettings() {
   const checkExist = document.getElementById('settingsPOPUP')
   if(checkExist) {return console.log("SETTINGS-POPUP ALREADY OPEN.");}
+
+  const popup_script = await GM.getResourceText("popup_script")
+  const popup_body = await GM.getResourceText("popup_body")
+  const popup_style = await GM.getResourceText("popup_style")
   
   const element = document.createElement("div")
   element.id = "settingsPOPUP"
 
   // HTML
-  element.innerHTML = `
-    <!-- CLOSE BUTTON -->
-    <button id="close">X</button>
-
-    <!-- PARAMETER -->
-    <h1><u>Parameter</u></h1>
-    <!-- Permanent Parameter -->
-    <div id="parameter">
-      <input type="text" disabled="true" id="parameter_placeholder" value="{datum}">
-      <input type="text" disabled="true" id="parameter_value" value="DD.MM.YYYY">
-      <button disabled="true">X</button>
-    </div>
-    <div id="parameter">
-      <input type="text" disabled="true" id="parameter_placeholder" value="{zeit}">
-      <input type="text" disabled="true" id="parameter_value" value="hh:mm">
-      <button disabled="true">X</button>
-    </div>
-    <div id="parameter">
-      <input type="text" disabled="true" id="parameter_placeholder" value="{suspectName}">
-      <input type="text" disabled="true" id="parameter_value" value="Vorname Nachname">
-      <button disabled="true">X</button>
-    </div>
-    <div id="parameter">
-      <input type="text" disabled="true" id="parameter_placeholder" value="{suspectBirth}">
-      <input type="text" disabled="true" id="parameter_value" value="DD.MM.YYYY">
-      <button disabled="true">X</button>
-    </div>
-
-    <!-- Custom Parameter -->
-    <div id="allParameter">
-    </div>
-    <button id="addParameter">+</button>
-    
-    <!-- AKTENVORLAGEN -->
-    <h1><u>Aktenvorlagen</u></h1>
-    <!-- Custom Aktenvorlagen -->
-    <div id="allAkten">
-    </div>
-    <button id="addAkte">+</button>
-
-    <!-- EINSTELLUNGEN -->
-    <h1><u>Einstellungen</u></h1>
-    <!-- Checkbox -->
-    <div id="settingsDiv">
-      <p>Parameter aktiviert:</p>
-      <input type="checkbox" id="replaceParameter">
-    </div>
-
-    <!-- Import/Export Configuration -->
-    <input id="importfield" type="text" placeholder="Konfiguration hier einfügen...">
-    <div id="configDiv">
-      <button id="import">LOAD FROM INPUT</button>
-      <button id="export">EXPORT TO CLIPBOARD</button>
-    </div>
-
-    <!-- Save/Reset Configuration -->
-    <div id="buttonsDiv">
-      <button id="save">SAVE</button>
-      <button id="resetdefault">RESET TO DEFAULT</button>
-    </div>
-  `
+  element.innerHTML = popup_body
+  
   // Styling
   const style = document.createElement("style")
-  style.innerHTML = `
-    #settingsPOPUP {
-    color: black;
-    background-color: white;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 600px;
-    height: 600px;
-    border-radius: 5px;
-    border: 2px solid black;
-    overflow: auto;
-    z-index: 1000;
-    text-align: center;
-    transform: translateX(-50%) translateY(-50%);
-    }
-
-    #settingsPOPUP * {
-    all: revert;
-    z-index: 1000;
-    }
-
-    #settingsPOPUP button {
-    margin: 5px;
-    outline: none;
-    }
-
-    #settingsPOPUP h1 {
-    margin-bottom: 0;
-    }
-    
-    #importfield {
-    width: 40%
-    }
-
-    #close {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    }
-
-    #buttonsDiv {
-    padding-top: 1vh;
-    padding-bottom: 1vh;
-    }
-
-    #settingsDiv {
-    display: flex;
-    justify-content: center;
-    }
-
-    #configDiv {
-    display: flex;
-    justify-content: center;
-    }
-
-    #parameter {
-    display: flex;
-    justify-content: center;
-    }
-
-    #parameter_placeholder {
-    width: 25%;
-    margin: 5px;
-    }
-
-    #parameter_value {
-    width: 25%;
-    margin: 5px;
-    }
-
-    #akte {
-    display: flex;
-    justify-content: center;
-    }
-
-    #akte_buttonName {
-    width: 25%;
-    margin: 5px;
-    }
-
-    #akte_template {
-    width: 60%;
-    margin: 5px;
-    }
-  `
+  style.innerHTML = popup_style
   element.appendChild(style)
 
   // Script
-  const scriptText = await GM.getResourceText("settings");
-  eval(scriptText)
+  eval(popup_script)
 
   document.body.append(element)
 }

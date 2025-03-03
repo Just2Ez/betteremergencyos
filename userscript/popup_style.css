@@ -1,0 +1,84 @@
+#settingsPOPUP {
+  color: black;
+  background-color: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 600px;
+  height: 600px;
+  border-radius: 5px;
+  border: 2px solid black;
+  overflow: auto;
+  z-index: 1000;
+  text-align: center;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+#settingsPOPUP * {
+  all: revert;
+  z-index: 1000;
+}
+
+#settingsPOPUP button {
+  margin: 5px;
+  outline: none;
+}
+
+#settingsPOPUP h1 {
+  margin-bottom: 0;
+}
+
+#importfield {
+  width: 40%;
+}
+
+#close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+#buttonsDiv {
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
+#settingsDiv {
+  display: flex;
+  justify-content: center;
+}
+
+#configDiv {
+  display: flex;
+  justify-content: center;
+}
+
+#parameter {
+  display: flex;
+  justify-content: center;
+}
+
+#parameter_placeholder {
+  width: 25%;
+  margin: 5px;
+}
+
+#parameter_value {
+  width: 25%;
+  margin: 5px;
+}
+
+#akte {
+  display: flex;
+  justify-content: center;
+}
+
+#akte_buttonName {
+  width: 25%;
+  margin: 5px;
+}
+
+#akte_template {
+  width: 60%;
+  margin: 5px;
+}
