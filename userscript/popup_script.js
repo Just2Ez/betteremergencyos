@@ -155,7 +155,7 @@ async function saveConfiguration() {
   await GM.setValue("beos_settings", currentConfig.Settings)
 
   console.log("SAVED CONFIGURATION.", currentConfig)
-  //window.close()
+  window.parent.document.getElementById('settingsPOPUP').remove();
 }
 
 // Clear Configuration from LocalStorage
@@ -165,7 +165,7 @@ async function resetConfiguration() {
   await GM.setValue("beos_settings", defaultConfig.Settings)
 
   console.log("RESETTING CONFIGURATION.")
-  //window.close()
+  window.parent.document.getElementById('settingsPOPUP').remove();
 }
 
 // Export Configuration to Clipboard
@@ -186,7 +186,7 @@ async function importConfiguration() {
     await GM.setValue("beos_settings", loadedConfig.Settings)
 
     console.log("SAVED IMPORTED CONFIGURATION.", loadedConfig)
-    //window.close()
+    window.parent.document.getElementById('settingsPOPUP').remove();
   } else {
     console.log("IMPORT NOT VALID.", importfield.value)
   }
