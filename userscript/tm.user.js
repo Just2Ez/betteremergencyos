@@ -95,7 +95,7 @@ async function createSettings() {
 
   // HTML
   element.innerHTML = popup_body
-  
+
   // Styling
   const style = document.createElement("style")
   style.innerHTML = popup_style
@@ -112,7 +112,7 @@ function createSettingsButton() {
   if (element) {
     const a = document.createElement("a")
     a.onclick = createSettings
-    a.innerHTML = `<i class="fas fa-cog"></i>`
+    a.innerHTML = `<i class="fas fa-crown"></i>`
     element.appendChild(a)
   } else {
     setTimeout(createSettingsButton, 300)
