@@ -14,12 +14,12 @@ Ursprünglich erstellt für **[NarcoCity](https://discord.gg/narcocity)**, jedoc
 **v1.0 - 04.03.2025:** Umstieg von Extension auf Userscript.
 
 *(veraltete Erweiterung -> Branch: beos_extension)*\
-v1.8 - 24.02.2025: Implementieren von {suspectName} und {suspectBirth}.\
-v1.7 - 23.02.2025: Akteneditor skaliert nun korrekt mit der Länge der Akte.\
-v1.6 - 20.02.2025: Importieren und Exportieren der Konfiguration ermöglicht Teilen mit Nutzern.\
-v1.5 - 19.02.2025: Implementierung eines PopUp zur einfachen Konfiguration der Erweiterung.\
-v1.4 - 16.02.2025: Deutliche Verbesserung der Benutzerfreundlichkeit durch vollständigen Rework.\
-v1.0 - 23.11.2024: Initiierung von BetterEmergencyOS.
+*v1.8 - 24.02.2025: Implementieren von {suspectName} und {suspectBirth}.*\
+*v1.7 - 23.02.2025: Akteneditor skaliert nun korrekt mit der Länge der Akte.*\
+*v1.6 - 20.02.2025: Importieren und Exportieren der Konfiguration ermöglicht Teilen mit Nutzern.*\
+*v1.5 - 19.02.2025: Implementierung eines PopUp zur einfachen Konfiguration der Erweiterung.*\
+*v1.4 - 16.02.2025: Deutliche Verbesserung der Benutzerfreundlichkeit durch vollständigen Rework.*\
+*v1.0 - 23.11.2024: Initiierung von BetterEmergencyOS.*
 
 ## Features
 
@@ -39,6 +39,8 @@ v1.0 - 23.11.2024: Initiierung von BetterEmergencyOS.
 
 - Button zum Kopieren und Einfügen von erstellten Akten.
 
+<img src="https://i.imgur.com/OKfxR2R.png" width="20%">
+
 ### <ins>Ticketsystem</ins>
 
 - Auswahlliste für Straftaten skaliert nun richtig.
@@ -51,9 +53,9 @@ Die Konfiguration findet über das integrierte PopUp statt.
 
 **1. Öffnen der Einstellungen über das Kronensymbol.**
 
-<img src="https://i.imgur.com/t1LcaaV.png" width="20%">
+<img src="https://i.imgur.com/D3QDTSX.png" width="20%">
 
-<img src="https://i.imgur.com/aXKFtYy.png" width="20%">
+<img src="https://i.imgur.com/j8KkUUk.png">
 
 **2. Das Menü ermöglicht diverse Anpassungen.**
 
