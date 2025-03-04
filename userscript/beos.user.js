@@ -9,9 +9,9 @@
 // @grant GM.getValue
 // @grant GM.setValue
 // @grant GM.getResourceText
-// @resource popup_script https://raw.githubusercontent.com/Just2Ez/betteremergencyos/refs/heads/dev/userscript/popup_script.js
-// @resource popup_body https://raw.githubusercontent.com/Just2Ez/betteremergencyos/refs/heads/dev/userscript/popup_body.html
-// @resource popup_style https://raw.githubusercontent.com/Just2Ez/betteremergencyos/refs/heads/dev/userscript/popup_style.css
+// @resource popup_script https://raw.githubusercontent.com/Just2Ez/betteremergencyos/refs/heads/main/userscript/popup_script.js
+// @resource popup_body https://raw.githubusercontent.com/Just2Ez/betteremergencyos/refs/heads/main/userscript/popup_body.html
+// @resource popup_style https://raw.githubusercontent.com/Just2Ez/betteremergencyos/refs/heads/main/userscript/popup_style.css
 // ==/UserScript==
 
 
