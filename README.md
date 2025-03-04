@@ -11,7 +11,7 @@ Ursprünglich erstellt für **[NarcoCity](https://discord.gg/narcocity)**, jedoc
 
 ## Changelog
 
-**v1.0 - 04.03.2025:** Umstieg von Extension auf Userscript. Ermöglicht automatische Aktualisierungen und vereinfacht die Installation. Konfigurationen bitte vor dem Wechsel exportieren, um Verlust zu vermeiden.
+**v1.0 - 04.03.2025:** Umstieg von Extension auf Userscript.
 
 *(veraltete Erweiterung -> Branch: beos_extension)*\
 v1.8 - 24.02.2025: Implementieren von {suspectName} und {suspectBirth}.\
