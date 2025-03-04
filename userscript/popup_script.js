@@ -211,22 +211,22 @@ async function createElements() {
   replaceParameterInput.checked = currentConfig.Settings.replaceParameter
 }
 
-// INITIATE
-async function init() {
+// Initate, when site is fully loaded
+(async function () {
   await loadConfiguration() // Load Configuration from LocalStorage
   await createElements() // Create Elements from loaded Configuration
 
-  // Einstellungen Buttons
+  // Buttons
   document.getElementById('close').addEventListener('click', function () {
     console.log("CLOSING SETTINGS.")
     window.parent.document.getElementById('settingsPOPUP').remove();
   });
 
-  document.getElementById('save').addEventListener('click', saveConfiguration);
-  document.getElementById('resetdefault').addEventListener('click', resetConfiguration);
-
   document.getElementById('export').addEventListener('click', exportConfiguration);
   document.getElementById('import').addEventListener('click', importConfiguration);
+
+  document.getElementById('save').addEventListener('click', saveConfiguration);
+  document.getElementById('resetdefault').addEventListener('click', resetConfiguration);
 
   // Hinzufügen von Vorlage
   document.getElementById('addParameter').addEventListener('click', () => {
@@ -235,9 +235,4 @@ async function init() {
   document.getElementById('addAkte').addEventListener('click', () => {
     addAkte("Name des Buttons", `Aktenvorlage -> Strg + V nach COPY-Button`)
   });
-}
-
-// Initate, when site is fully loaded
-(async function () {
-  init()
 })();

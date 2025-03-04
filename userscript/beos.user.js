@@ -3,7 +3,7 @@
 // @namespace https://github.com/Just2Ez/betteremergencyos
 // @icon https://www.google.com/s2/favicons?sz=64&domain=emergencyos.de
 // @description Quality of Life changes for EmergencyOS.
-// @author _just2ez
+// @author Discord: _just2ez
 // @version 1.0
 // @match *://*.emergencyos.de/*
 // @grant GM.getValue
@@ -17,14 +17,17 @@
 
 
 const techConfig = {
+  // Aktensystem
   selectorAkteDropdown: "body > form > div > div.app-inner-body > div > div:nth-child(2) > div:nth-child(2) > div > div > div.selectize-input.items.required.not-full.has-options", // akte dropdown
-  selectorTicketDropdown: "body > form > div > div.app-inner-body > div > div.cal-form > div:nth-child(2) > div > div > div > div.selectize-input.items.required.not-full.has-options", // ticket dropdown
-
   selectorAkteTextField: ["#editor > div.ql-editor.ql-blank", "#editor > div.ql-editor"], // akte editors
   selectorAkteField: "body > form > div > div.app-inner-body > div > div:nth-child(3) > div > div > div", // akte buttonrow
   selectorAkteViolationInput: "body > form > div > div.app-inner-body > div > div:nth-child(2) > div:nth-child(2) > div > div > div.selectize-input.items.required.not-full.has-options > input[type=text]", // akte violation input
   selectorAkteViolationList: "body > form > div > div.app-inner-body > div > div:nth-child(2) > div:nth-child(2) > div > div > div.selectize-dropdown.multi.plugin-remove_button > div",
 
+  // Ticketsystem
+  selectorTicketDropdown: "body > form > div > div.app-inner-body > div > div.cal-form > div:nth-child(2) > div > div > div > div.selectize-input.items.required.not-full.has-options", // ticket dropdown
+
+  // Strafakte
   selectorAkteCopyButtons: "body > div.app-inner > div.app-inner-body > div > div:nth-child(8)", // created akte reporttext
   selectorAkteEditor: "body > div.app-inner > div.app-inner-body > div > div.ql-snow > div", // created akte editor
   selectorAkteViolations: "body > div.app-inner > div.app-inner-body > div > div.report-header.d-flex > div.report-tags", // created akte violations
@@ -83,13 +86,16 @@ const permanentParameter = {
 
 // Create Settings PopUp
 async function createSettings() {
+  // Prevent opening multiple popups
   const checkExist = document.getElementById('settingsPOPUP')
   if(checkExist) {return console.log("SETTINGS-POPUP ALREADY OPEN.");}
 
+  // Get Resource Text
   const popup_script = await GM.getResourceText("popup_script")
   const popup_body = await GM.getResourceText("popup_body")
   const popup_style = await GM.getResourceText("popup_style")
   
+  // Create SettingsPOPUP element
   const element = document.createElement("div")
   element.id = "settingsPOPUP"
 
@@ -107,6 +113,7 @@ async function createSettings() {
   document.body.append(element)
 }
 
+// Create the settings button for opening the popup
 function createSettingsButton() {
   const element = document.getElementById("user")
   if (element) {
@@ -239,7 +246,7 @@ function addTemplateCopyButton() {
   }
 }
 
-// Add a button for inserting akte from storage
+// Add a button for inserting case from storage
 async function addTemplateInsertButton() {
   const beos_copycase = await GM.getValue("beos_copycase", undefined)
   if (!beos_copycase) { return; }
@@ -260,6 +267,7 @@ async function addTemplateInsertButton() {
         insertAkte(beos_copycase.template)
         console.log("INSERTED COPYCASE TEMPLATE.", element.innerHTML)
 
+        // TODO: make violations work
         // Add violations
         const violationClick = document.querySelector(techConfig.selectorAkteViolationInput)
         //violationClick.click()
@@ -301,6 +309,7 @@ async function addTemplateInsertButton() {
   }
 }
 
+// Copy violations & case to storage
 function addAkteCopyButton() {
   const element = document.querySelector(techConfig.selectorAkteCopyButtons)
   if (element) {

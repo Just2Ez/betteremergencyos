@@ -1,22 +1,25 @@
 # BetterEmergencyOS
 
-Quality of Life Updates für [**EmergencyOS**](https://emergencyos.de). Behebt diverse Stylefehler und fügt Aktenvorlagen hinzu.\
-Ursprünglich erstellt für [**NarcoCity**](https://discord.gg/narcocity), jedoch verwendbar auf sämtliche Server, welche EmergencyOS verwenden. 
+Quality of Life Updates für **[EmergencyOS](https://emergencyos.de)**. Behebt diverse Stylefehler und fügt Aktenvorlagen hinzu.\
+Ursprünglich erstellt für **[NarcoCity](https://discord.gg/narcocity)**, jedoch verwendbar auf sämtliche Server, welche EmergencyOS verwenden. 
 
 ## Installation
 
-1. **[Download](https://github.com/Just2Ez/emergencyos_addon/archive/refs/heads/main.zip)** dieses Repository als ZIP-Datei.
-2. Entpacke die ZIP-Datei.
-3. Installiere die Extension in deinem Browser. **[chrome](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world?hl=de#load-unpacked)** **[opera](https://help.opera.com/en/extensions/testing/)**
+1. Aktiviere den **Entwicklermodus** in deinem Browser. **[chrome](https://support.google.com/chrome/a/answer/2714278?hl=de#:~:text=Rufen%20Sie%20chrome%3A%2F%2Fextensions,Sie%20rechts%20oben%20den%20Entwicklermodus.)** **[opera](https://help.opera.com/en/extensions/testing/#developer-mode)**
+2. Installiere die Erweiterung **[Tampermonkey](https://www.tampermonkey.net/)**.
+3. Installiere **[BetterEmergencyOS](https://raw.githubusercontent.com/Just2Ez/betteremergencyos/refs/heads/main/userscript/beos.user.js)**.
 
 ## Changelog
 
-**v1.8 - 24.02.2025:** Implementieren von {suspectName} und {suspectBirth}.\
-**v1.7 - 23.02.2025:** Akteneditor skaliert nun korrekt mit der Länge der Akte.\
-**v1.6 - 20.02.2025:** Importieren und Exportieren der Konfiguration ermöglicht Teilen mit Nutzern.\
-**v1.5 - 19.02.2025:** Implementierung eines PopUp zur einfachen Konfiguration der Erweiterung.\
-**v1.4 - 16.02.2025:** Deutliche Verbesserung der Benutzerfreundlichkeit durch vollständigen Rework.\
-**v1.0 - 23.11.2024:** Initiierung von BetterEmergencyOS.
+**v1.0 - 04.03.2025:** Umstieg von Extension auf Userscript. Ermöglicht automatische Aktualisierungen und vereinfacht die Installation. Konfigurationen bitte vor dem Wechsel exportieren, um Verlust zu vermeiden.
+
+*(veraltete Erweiterung -> Branch: beos_extension)*\
+v1.8 - 24.02.2025: Implementieren von {suspectName} und {suspectBirth}.\
+v1.7 - 23.02.2025: Akteneditor skaliert nun korrekt mit der Länge der Akte.\
+v1.6 - 20.02.2025: Importieren und Exportieren der Konfiguration ermöglicht Teilen mit Nutzern.\
+v1.5 - 19.02.2025: Implementierung eines PopUp zur einfachen Konfiguration der Erweiterung.\
+v1.4 - 16.02.2025: Deutliche Verbesserung der Benutzerfreundlichkeit durch vollständigen Rework.\
+v1.0 - 23.11.2024: Initiierung von BetterEmergencyOS.
 
 ## Features
 
@@ -34,6 +37,8 @@ Ursprünglich erstellt für [**NarcoCity**](https://discord.gg/narcocity), jedoc
 
 <img src="https://i.imgur.com/W52tQri.png" width="50%">
 
+- Button zum Kopieren und Einfügen von erstellten Akten.
+
 ### <ins>Ticketsystem</ins>
 
 - Auswahlliste für Straftaten skaliert nun richtig.
@@ -44,11 +49,9 @@ Ursprünglich erstellt für [**NarcoCity**](https://discord.gg/narcocity), jedoc
 
 Die Konfiguration findet über das integrierte PopUp statt.
 
-**1.  Das Menü öffnet sich durch einen Klick auf die Extension.**
+**1. Öffnen der Einstellungen über das Kronensymbol.**
 
 <img src="https://i.imgur.com/t1LcaaV.png" width="20%">
-
-***TIPP:*** *Das Anpinnen der Erweiterung vereinfacht die Benutzung.*
 
 <img src="https://i.imgur.com/aXKFtYy.png" width="20%">
 
