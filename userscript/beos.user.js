@@ -4,7 +4,7 @@
 // @icon https://www.google.com/s2/favicons?sz=64&domain=emergencyos.de
 // @description Quality of Life changes for EmergencyOS.
 // @author Discord: _just2ez
-// @version 1.2
+// @version 1.3
 // @match *://*.emergencyos.de/*
 // @grant GM.getValue
 // @grant GM.setValue
@@ -23,6 +23,7 @@ const techConfig = {
   selectorAkteField: "body > form > div > div.app-inner-body > div > div:nth-child(3) > div > div > div", // akte buttonrow
   selectorAkteViolationInput: "body > form > div > div.app-inner-body > div > div:nth-child(2) > div:nth-child(2) > div > div > div.selectize-input.items.required.not-full.has-options > input[type=text]", // akte violation input
   selectorAkteViolationList: "body > form > div > div.app-inner-body > div > div:nth-child(2) > div:nth-child(2) > div > div > div.selectize-dropdown.multi.plugin-remove_button > div",
+  selectorAkteTitleInput: "body > form > div > div.app-inner-body > div > div.row.mt-3 > div > div > input", // akte title
 
   // Ticketsystem
   selectorTicketDropdown: "body > form > div > div.app-inner-body > div > div.cal-form > div:nth-child(2) > div > div > div > div.selectize-input.items.required.not-full.has-options", // ticket dropdown
@@ -30,6 +31,7 @@ const techConfig = {
   // Strafakte
   selectorAkteCopyButtons: "body > div.app-inner > div.app-inner-body > div > div:nth-child(8)", // created akte reporttext
   selectorAkteEditor: "body > div.app-inner > div.app-inner-body > div > div.ql-snow > div", // created akte editor
+  selectorAkteTitle: "body > div.app-inner > div.app-inner-top.d-flex > div.inner-top-left > h4", // created akte title
   selectorAkteViolations: "body > div.app-inner > div.app-inner-body > div > div.report-header.d-flex > div.report-tags", // created akte violations
 
   selectorDienstnummer: "body > form > div > div.app-inner-body > div > div:nth-child(4) > div:nth-child(2) > div > input[type=text]", // dienstnummer
@@ -264,8 +266,17 @@ async function addTemplateInsertButton() {
     newButton.addEventListener('click', function () {
       if (beos_copycase) {
         // Insert template in editor
-        insertAkte(beos_copycase.template)
-        console.log("INSERTED COPYCASE TEMPLATE.", element.innerHTML)
+        if (beos_copycase.template) {
+          insertAkte(beos_copycase.template)
+          console.log("INSERTED COPYCASE TEMPLATE.", beos_copycase.template)
+        }
+
+        // Insert Title
+        if(beos_copycase.title) {
+          const casetitle = document.querySelector(techConfig.selectorAkteTitleInput)
+          casetitle.value = beos_copycase.title
+          console.log("INSERTED COPYCASE TITLE.", beos_copycase.title)
+        }
 
         // TODO: make violations work
         // Add violations
@@ -309,7 +320,7 @@ async function addTemplateInsertButton() {
   }
 }
 
-// Copy violations & case to storage
+// Copy violations, case title & case template to storage
 function addAkteCopyButton() {
   const element = document.querySelector(techConfig.selectorAkteCopyButtons)
   if (element) {
@@ -323,6 +334,9 @@ function addAkteCopyButton() {
       // Template from editor
       const editor = document.querySelector(techConfig.selectorAkteEditor)
 
+      // Parse case titel
+      const casetitle = document.querySelector(techConfig.selectorAkteTitle)
+
       // Parse violations
       let parsedViolations = []
       const violations = document.querySelector(techConfig.selectorAkteViolations)
@@ -333,8 +347,8 @@ function addAkteCopyButton() {
         parsedViolations.push({ amount: parseInt(parsedAmount), violation: parsedViolation })
       }
 
-      await GM.setValue("beos_copycase", { violations: parsedViolations, template: editor.innerHTML.trim() })
-      console.log("COPIED AKTE TO STORAGE.", { violations: parsedViolations, template: editor.innerHTML.trim() })
+      await GM.setValue("beos_copycase", { violations: parsedViolations, template: editor.innerHTML.trim(), title: casetitle.innerText })
+      console.log("COPIED AKTE TO STORAGE.", { violations: parsedViolations, template: editor.innerHTML.trim(), title: casetitle.innerText })
     });
     element.appendChild(newButton);
   } else {
