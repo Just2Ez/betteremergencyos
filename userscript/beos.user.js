@@ -46,7 +46,7 @@ const techConfig = {
   ],
 }
 
-let defaultConfig = {
+const defaultConfig = {
   Parameter: [
     {
       placeholder: "{dienstnummer}",
@@ -76,7 +76,7 @@ let defaultConfig = {
   }
 }
 
-// Wird automatisch in getUniqueInformation() aktualisiert.
+// Wird automatisch in getPermanentInformation() aktualisiert.
 const permanentParameter = {
   "{datum}": undefined,
   "{zeit}": undefined,
@@ -166,7 +166,7 @@ async function getSuspectInformation() {
 }
 
 // Refresh permanent Parameters
-async function getUniqueInformation() {
+async function getPermanentInformation() {
   const date = new Date();
 
   // Datum
@@ -191,7 +191,7 @@ async function getUniqueInformation() {
 }
 
 // Insert template in editor
-function insertAkte(template) {
+function insertTemplateInEditor(template) {
   const element1 = document.querySelector(techConfig.selectorAkteTextField[0])
   const element2 = document.querySelector(techConfig.selectorAkteTextField[1])
   if (element1) {
@@ -201,7 +201,7 @@ function insertAkte(template) {
     element2.innerHTML = template
     console.log("TEMPLATE INSERTED IN EDITOR. [element2]")
   } else {
-    setTimeout(insertAkte, 300, template)
+    setTimeout(insertTemplateInEditor, 300, template)
   }
 }
 
@@ -217,7 +217,7 @@ function addTemplateButton(label, template) {
     newButton.style.padding = "8px 20px"
     newButton.style.userSelect = "none"
     newButton.addEventListener('click', function () {
-      insertAkte(template);
+      insertTemplateInEditor(template);
     });
     element.appendChild(newButton);
   } else {
@@ -249,7 +249,7 @@ function addTemplateCopyButton() {
 }
 
 // Add a button for inserting case from storage
-async function addTemplateInsertButton() {
+async function addAkteInsertButton() {
   const beos_copycase = await GM.getValue("beos_copycase", undefined)
   if (!beos_copycase) { return; }
 
@@ -267,7 +267,7 @@ async function addTemplateInsertButton() {
       if (beos_copycase) {
         // Insert template in editor
         if (beos_copycase.template) {
-          insertAkte(beos_copycase.template)
+          insertTemplateInEditor(beos_copycase.template)
           console.log("INSERTED COPYCASE TEMPLATE.", beos_copycase.template)
         }
 
@@ -374,7 +374,7 @@ function addAkteCopyButton() {
       case "/Functions/Police/Function_NOL/AddCrime.php":
         drowdownHeight(techConfig.selectorAkteDropdown)
         editorHeight()
-        await getUniqueInformation()
+        await getPermanentInformation()
         for (let akte in loadedAkten) {
           // Load Template
           let template = loadedAkten[akte].template
@@ -394,7 +394,7 @@ function addAkteCopyButton() {
           // Add Button
           addTemplateButton(loadedAkten[akte].buttonName, template)
         }
-        addTemplateInsertButton()
+        addAkteInsertButton()
         addTemplateCopyButton()
         break;
       // Ticketsystem
