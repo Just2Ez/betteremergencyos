@@ -253,6 +253,20 @@ async function addAkteInsertButton() {
   const beos_copycase = await GM.getValue("beos_copycase", undefined)
   if (!beos_copycase) { return; }
 
+  // FetchViolationList
+  let violationElements
+  async function fetchViolationList() {
+    const violationList = document.querySelector(techConfig.selectorAkteViolationList)
+    const elements = violationList.querySelectorAll('.option'); // select all akten clickables
+    console.log("LENGTH:", elements.length)
+
+    if (elements.length === 0) {
+      setTimeout(fetchViolationList,100)
+    } else {
+      violationElements = elements
+    }
+  }
+
   const element = document.querySelector(techConfig.selectorAkteField)
   if (element) {
     const newButton = document.createElement('h1');
@@ -263,7 +277,7 @@ async function addAkteInsertButton() {
     newButton.style.padding = "8px 5px"
     newButton.style.userSelect = "none"
     newButton.style.float = "right"
-    newButton.addEventListener('click', function () {
+    newButton.addEventListener('click', async function () {
       if (beos_copycase) {
         // Insert template in editor
         if (beos_copycase.template) {
@@ -278,22 +292,26 @@ async function addAkteInsertButton() {
           console.log("INSERTED COPYCASE TITLE.", beos_copycase.title)
         }
 
-        // TODO: make violations work
-        // Add violations
+        // Open Violation Menu
         const violationClick = document.querySelector(techConfig.selectorAkteViolationInput)
         //violationClick.click()
 
+        // Loop Violations and click select correct
         for (let violation in beos_copycase.violations) {
           const currViolation = beos_copycase.violations[violation]
           for (let i = 0; i < currViolation.amount; i++) {
-            const violationList = document.querySelector(techConfig.selectorAkteViolationList)
-            const elements = violationList.querySelectorAll('.option'); // select all akten clickables
-            console.log("LENGTH:", elements.length)
+            fetchViolationList()
 
+            // Wait for fetching violation list
+            while (!violationElements) {
+              console.log("VIOLATION ELEMENT NOT LOADED YET. SLEEPING...")
+              await new Promise(r => setTimeout(r, 100));
+            }
 
             // Loop all found elements
             let targetElement
-            elements.forEach(element => {
+            violationElements.forEach(element => {
+              // If correct violation found
               if (element.innerText === currViolation.violation) {
                 targetElement = element;
               }
@@ -302,6 +320,11 @@ async function addAkteInsertButton() {
             // Check if element was found
             if (targetElement) {
               console.log('VIOLATION ELEMENT FOUND.', targetElement);
+              var me_clickEvent = new Event("mouseenter", { bubbles: true, cancelable: true });
+              targetElement.dispatchEvent(me_clickEvent);
+              var mo_clickEvent = new Event("pointerdown", { bubbles: true, cancelable: true });
+              targetElement.dispatchEvent(mo_clickEvent);
+              targetElement.click()
               //Selectize.prototype.onOptionSelect({currentTarget: targetElement})
               console.log("INSERTED VIOLATION.", currViolation.violation)
             } else {
