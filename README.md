@@ -5,7 +5,7 @@ Ursprünglich erstellt für **[NarcoCity](https://discord.gg/narcocity)**, jedoc
 
 ## Installation
 
-1. Aktiviere den **Entwicklermodus** in deinem Browser. **[chrome](https://support.google.com/chrome/a/answer/2714278?hl=de#:~:text=Rufen%20Sie%20chrome%3A%2F%2Fextensions,Sie%20rechts%20oben%20den%20Entwicklermodus.)** **[opera](https://help.opera.com/en/extensions/testing/#developer-mode)**
+1. Aktiviere den Entwicklermodus in deinem Browser. **[chrome](https://support.google.com/chrome/a/answer/2714278?hl=de#:~:text=Rufen%20Sie%20chrome%3A%2F%2Fextensions,Sie%20rechts%20oben%20den%20Entwicklermodus.)** **[opera](https://help.opera.com/en/extensions/testing/#developer-mode)**
 2. Installiere die Erweiterung **[Tampermonkey](https://www.tampermonkey.net/)**.
 3. Installiere **[BetterEmergencyOS](https://raw.githubusercontent.com/Just2Ez/betteremergencyos/refs/heads/main/userscript/beos.user.js)**.
 
