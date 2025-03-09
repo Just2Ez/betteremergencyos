@@ -4,7 +4,7 @@
 // @icon https://www.google.com/s2/favicons?sz=64&domain=emergencyos.de
 // @description Quality of Life changes for EmergencyOS.
 // @author Discord: _just2ez
-// @version 1.4
+// @version 1.5
 // @match *://*.emergencyos.de/*
 // @grant GM.getValue
 // @grant GM.setValue
@@ -294,7 +294,7 @@ async function addAkteInsertButton() {
 
         // Open Violation Menu
         const violationClick = document.querySelector(techConfig.selectorAkteViolationInput)
-        //violationClick.click()
+        violationClick.click()
 
         // Loop Violations and click select correct
         for (let violation in beos_copycase.violations) {
@@ -320,19 +320,13 @@ async function addAkteInsertButton() {
             // Check if element was found
             if (targetElement) {
               console.log('VIOLATION ELEMENT FOUND.', targetElement);
-              var me_clickEvent = new Event("mouseenter", { bubbles: true, cancelable: true });
-              targetElement.dispatchEvent(me_clickEvent);
-              var mo_clickEvent = new Event("pointerdown", { bubbles: true, cancelable: true });
-              targetElement.dispatchEvent(mo_clickEvent);
-              targetElement.click()
-              //Selectize.prototype.onOptionSelect({currentTarget: targetElement})
+              $(targetElement).trigger("mousedown")
               console.log("INSERTED VIOLATION.", currViolation.violation)
             } else {
               console.log('VIOLATION ELEMENT NOT FOUND.');
             }
           }
         }
-
       } else {
         console.log("NO COPYCASE FOUND. NOT CREATING INSERT BUTTON.")
       }
