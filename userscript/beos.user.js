@@ -40,7 +40,6 @@ const techConfig = {
     "/Functions/Police/Function_NOL/AddCrime.php",
     "/Functions/Police/Function_Ticket/index.php",
     "/Functions/Police/Function_NOL/OffenderDetail.php",
-    "/Functions/Police/Function_NOL/OffenderDetail.php/",
     "/Functions/Police/Function_NOL/Detail2.php",
     "/App/index.php",
     "/App/",
@@ -390,6 +389,7 @@ function addAkteCopyButton() {
     switch (window.location.pathname) {
       // Aktensystem
       case "/Functions/Police/Function_NOL/AddCrime.php":
+      case "/Functions/Police/Function_NOL/AddCrime.php/":
         drowdownHeight(techConfig.selectorAkteDropdown)
         editorHeight()
         await getPermanentInformation()
@@ -417,6 +417,7 @@ function addAkteCopyButton() {
         break;
       // Ticketsystem
       case "/Functions/Police/Function_Ticket/index.php":
+      case "/Functions/Police/Function_Ticket/index.php/":
         drowdownHeight(techConfig.selectorTicketDropdown)
         break;
       // Strafregister
@@ -426,10 +427,12 @@ function addAkteCopyButton() {
         break;
       // Strafakte
       case "/Functions/Police/Function_NOL/Detail2.php":
+      case "/Functions/Police/Function_NOL/Detail2.php/":
         addAkteCopyButton()
         break;
       // Settings PopUp
       case "/App/index.php":
+      case "/App/index.php/":
       case "/App/":
         createSettingsButton()
         break;
