@@ -4,7 +4,7 @@
 // @icon https://www.google.com/s2/favicons?sz=64&domain=emergencyos.de
 // @description Quality of Life changes for EmergencyOS.
 // @author Discord: _just2ez
-// @version 1.5
+// @version 1.6
 // @match *://*.emergencyos.de/*
 // @grant GM.getValue
 // @grant GM.setValue
@@ -420,6 +420,7 @@ function addAkteCopyButton() {
         break;
       // Strafregister
       case "/Functions/Police/Function_NOL/OffenderDetail.php":
+      case "/Functions/Police/Function_NOL/OffenderDetail.php/":
         getSuspectInformation()
         break;
       // Strafakte
