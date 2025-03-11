@@ -11,15 +11,16 @@ Ursprünglich erstellt für **[NarcoCity](https://discord.gg/narcocity)**, jedoc
 
 ## Changelog
 
+**v1.5 - 09.03.2025:** Erstellte Akten können nun vollständig (Titel, Straftaten, Inhalt) kopiert und eingefügt werden.\
 **v1.0 - 04.03.2025:** Umstieg von Extension auf Userscript.
 
-*(veraltete Erweiterung -> Branch: beos_extension)*\
+<sub>*(veraltete Erweiterung -> Branch: beos_extension)*\
 *v1.8 - 24.02.2025: Implementieren von {suspectName} und {suspectBirth}.*\
 *v1.7 - 23.02.2025: Akteneditor skaliert nun korrekt mit der Länge der Akte.*\
 *v1.6 - 20.02.2025: Importieren und Exportieren der Konfiguration ermöglicht Teilen mit Nutzern.*\
 *v1.5 - 19.02.2025: Implementierung eines PopUp zur einfachen Konfiguration der Erweiterung.*\
 *v1.4 - 16.02.2025: Deutliche Verbesserung der Benutzerfreundlichkeit durch vollständigen Rework.*\
-*v1.0 - 23.11.2024: Initiierung von BetterEmergencyOS.*
+*v1.0 - 23.11.2024: Initiierung von BetterEmergencyOS.*\</sub>
 
 ## Features
 
