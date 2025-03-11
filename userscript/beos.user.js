@@ -40,6 +40,7 @@ const techConfig = {
     "/Functions/Police/Function_NOL/AddCrime.php",
     "/Functions/Police/Function_Ticket/index.php",
     "/Functions/Police/Function_NOL/OffenderDetail.php",
+    "/Functions/Police/Function_NOL/OffenderDetail.php/",
     "/Functions/Police/Function_NOL/Detail2.php",
     "/App/index.php",
     "/App/",
