@@ -17,25 +17,24 @@
 
 
 const techConfig = {
-  // Aktensystem
-  selectorAkteDropdown: "body > form > div > div.app-inner-body > div > div:nth-child(2) > div:nth-child(2) > div > div > div.selectize-input.items.required.not-full.has-options", // akte dropdown
-  selectorAkteTextField: ["#editor > div.ql-editor.ql-blank", "#editor > div.ql-editor"], // akte editors
-  selectorAkteField: "body > form > div > div.app-inner-body > div > div:nth-child(3) > div > div > div", // akte buttonrow
-  selectorAkteViolationInput: "body > form > div > div.app-inner-body > div > div:nth-child(2) > div:nth-child(2) > div > div > div.selectize-input.items.required.not-full.has-options > input[type=text]", // akte violation input
-  selectorAkteViolationList: "body > form > div > div.app-inner-body > div > div:nth-child(2) > div:nth-child(2) > div > div > div.selectize-dropdown.multi.plugin-remove_button > div",
-  selectorAkteTitleInput: "body > form > div > div.app-inner-body > div > div.row.mt-3 > div > div > input", // akte title
+  selectors: {
+    // Case
+    Case_Dropdown: "body > form > div > div.app-inner-body > div > div:nth-child(2) > div:nth-child(2) > div > div > div.selectize-input.items.required.not-full.has-options",
+    Case_Editor: ["#editor > div.ql-editor.ql-blank", "#editor > div.ql-editor"],
+    Case_Buttons: "body > form > div > div.app-inner-body > div > div:nth-child(3) > div > div > div",
+    Case_ViolationInput: "body > form > div > div.app-inner-body > div > div:nth-child(2) > div:nth-child(2) > div > div > div.selectize-input.items.required.not-full.has-options > input[type=text]",
+    Case_ViolationList: "body > form > div > div.app-inner-body > div > div:nth-child(2) > div:nth-child(2) > div > div > div.selectize-dropdown.multi.plugin-remove_button > div",
+    Case_TitleInput: "body > form > div > div.app-inner-body > div > div.row.mt-3 > div > div > input",
 
-  // Ticketsystem
-  selectorTicketDropdown: "body > form > div > div.app-inner-body > div > div.cal-form > div:nth-child(2) > div > div > div > div.selectize-input.items.required.not-full.has-options", // ticket dropdown
+    // Ticket
+    Ticket_Dropdown: "body > form > div > div.app-inner-body > div > div.cal-form > div:nth-child(2) > div > div > div > div.selectize-input.items.required.not-full.has-options",
 
-  // Strafakte
-  selectorAkteCopyButtons: "body > div.app-inner > div.app-inner-body > div > div:nth-child(8)", // created akte reporttext
-  selectorAkteEditor: "body > div.app-inner > div.app-inner-body > div > div.ql-snow > div", // created akte editor
-  selectorAkteTitle: "body > div.app-inner > div.app-inner-top.d-flex > div.inner-top-left > h4", // created akte title
-  selectorAkteViolations: "body > div.app-inner > div.app-inner-body > div > div.report-header.d-flex > div.report-tags", // created akte violations
-
-  selectorDienstnummer: "body > form > div > div.app-inner-body > div > div:nth-child(4) > div:nth-child(2) > div > input[type=text]", // dienstnummer
-
+    // CreatedCase
+    CreatedCase_CopyButton: "body > div.app-inner > div.app-inner-body > div > div:nth-child(8)",
+    CreatedCase_Editor: "body > div.app-inner > div.app-inner-body > div > div.ql-snow > div",
+    CreatedCase_Title: "body > div.app-inner > div.app-inner-top.d-flex > div.inner-top-left > h4",
+    CreatedCase_Violations: "body > div.app-inner > div.app-inner-body > div > div.report-header.d-flex > div.report-tags",
+  },
   allowedPathnames: [
     "/Functions/Police/Function_NOL/AddCrime.php",
     "/Functions/Police/Function_Ticket/index.php",
@@ -76,7 +75,6 @@ const defaultConfig = {
   }
 }
 
-// Wird automatisch in getPermanentInformation() aktualisiert.
 const permanentParameter = {
   "{datum}": undefined,
   "{zeit}": undefined,
@@ -86,13 +84,13 @@ const permanentParameter = {
 
 
 
-// Create Settings PopUp
+// Create SettingsPOPUP
 async function createSettings() {
   // Prevent opening multiple popups
   const checkExist = document.getElementById('settingsPOPUP')
   if(checkExist) {return console.log("SETTINGS-POPUP ALREADY OPEN.");}
 
-  // Get Resource Text
+  // Get ressource text
   const popup_script = await GM.getResourceText("popup_script")
   const popup_body = await GM.getResourceText("popup_body")
   const popup_style = await GM.getResourceText("popup_style")
@@ -150,7 +148,7 @@ function editorHeight() {
   }
 }
 
-// Modify height of dropdown for chosing laws
+// Save current suspect name & birth to storage
 async function getSuspectInformation() {
   const suspectNameElement = document.querySelector("#myModal > div > div > div.modal-body > a > b")
   const suspectBirthElement = document.querySelector("body > div.app-inner > div.app-inner-body > div > div:nth-child(1) > div.col > div:nth-child(3) > div > a.normalAncer")
@@ -192,8 +190,8 @@ async function getPermanentInformation() {
 
 // Insert template in editor
 function insertTemplateInEditor(template) {
-  const element1 = document.querySelector(techConfig.selectorAkteTextField[0])
-  const element2 = document.querySelector(techConfig.selectorAkteTextField[1])
+  const element1 = document.querySelector(techConfig.selectors.Case_Editor[0])
+  const element2 = document.querySelector(techConfig.selectors.Case_Editor[1])
   if (element1) {
     element1.innerHTML = template
     console.log("TEMPLATE INSERTED IN EDITOR. [element1]")
@@ -207,7 +205,7 @@ function insertTemplateInEditor(template) {
 
 // Add a button for template
 function addTemplateButton(label, template) {
-  const element = document.querySelector(techConfig.selectorAkteField)
+  const element = document.querySelector(techConfig.selectors.Case_Buttons)
   if (element) {
     const newButton = document.createElement('h1');
     newButton.textContent = label;
@@ -227,7 +225,7 @@ function addTemplateButton(label, template) {
 
 // Add a button for copying current template
 function addTemplateCopyButton() {
-  const element = document.querySelector(techConfig.selectorAkteField)
+  const element = document.querySelector(techConfig.selectors.Case_Buttons)
   if (element) {
     const newButton = document.createElement('h1');
     newButton.textContent = "COPY TEMPLATE";
@@ -238,7 +236,7 @@ function addTemplateCopyButton() {
     newButton.style.userSelect = "none"
     newButton.style.float = "right"
     newButton.addEventListener('click', async function () {
-      const element = document.querySelector(techConfig.selectorAkteTextField[1])
+      const element = document.querySelector(techConfig.selectors.Case_Editor[1])
       navigator.clipboard.writeText(element.innerHTML)
       console.log("COPIED TEMPLATE TO CLIPBOARD.", element.innerHTML)
     });
@@ -249,15 +247,15 @@ function addTemplateCopyButton() {
 }
 
 // Add a button for inserting case from storage
-async function addAkteInsertButton() {
+async function addCaseInsertButton() {
   const beos_copycase = await GM.getValue("beos_copycase", undefined)
   if (!beos_copycase) { return; }
 
   // FetchViolationList
   let violationElements
   async function fetchViolationList() {
-    const violationList = document.querySelector(techConfig.selectorAkteViolationList)
-    const elements = violationList.querySelectorAll('.option'); // select all akten clickables
+    const violationList = document.querySelector(techConfig.selectors.Case_ViolationList)
+    const elements = violationList.querySelectorAll('.option'); // fetch all violation elements
     console.log("LENGTH:", elements.length)
 
     if (elements.length === 0) {
@@ -267,7 +265,7 @@ async function addAkteInsertButton() {
     }
   }
 
-  const element = document.querySelector(techConfig.selectorAkteField)
+  const element = document.querySelector(techConfig.selectors.Case_Buttons)
   if (element) {
     const newButton = document.createElement('h1');
     newButton.textContent = "INSERT";
@@ -285,18 +283,18 @@ async function addAkteInsertButton() {
           console.log("INSERTED COPYCASE TEMPLATE.", beos_copycase.template)
         }
 
-        // Insert Title
+        // Insert title
         if(beos_copycase.title) {
-          const casetitle = document.querySelector(techConfig.selectorAkteTitleInput)
+          const casetitle = document.querySelector(techConfig.selectors.Case_TitleInput)
           casetitle.value = beos_copycase.title
           console.log("INSERTED COPYCASE TITLE.", beos_copycase.title)
         }
 
-        // Open Violation Menu
-        const violationClick = document.querySelector(techConfig.selectorAkteViolationInput)
+        // Open violation dropdown
+        const violationClick = document.querySelector(techConfig.selectors.Case_ViolationInput)
         violationClick.click()
 
-        // Loop Violations and click select correct
+        // Loop violations and click correct element
         for (let violation in beos_copycase.violations) {
           const currViolation = beos_copycase.violations[violation]
           for (let i = 0; i < currViolation.amount; i++) {
@@ -337,9 +335,9 @@ async function addAkteInsertButton() {
   }
 }
 
-// Copy violations, case title & case template to storage
-function addAkteCopyButton() {
-  const element = document.querySelector(techConfig.selectorAkteCopyButtons)
+// Copy violations, title & template to storage
+function addCaseCopyButton() {
+  const element = document.querySelector(techConfig.selectors.CreatedCase_CopyButton)
   if (element) {
     const newButton = document.createElement('h1');
     newButton.textContent = "COPY";
@@ -348,15 +346,15 @@ function addAkteCopyButton() {
     newButton.style.userSelect = "none"
     newButton.style.float = "right"
     newButton.addEventListener('click', async function () {
-      // Template from editor
-      const editor = document.querySelector(techConfig.selectorAkteEditor)
+      // Parse case template
+      const editor = document.querySelector(techConfig.selectors.CreatedCase_Editor)
 
       // Parse case titel
-      const casetitle = document.querySelector(techConfig.selectorAkteTitle)
+      const casetitle = document.querySelector(techConfig.selectors.CreatedCase_Title)
 
-      // Parse violations
+      // Parse case violations
       let parsedViolations = []
-      const violations = document.querySelector(techConfig.selectorAkteViolations)
+      const violations = document.querySelector(techConfig.selectors.CreatedCase_Violations)
       for (let i = 0; i < violations.children.length; i++) {
         const violation = violations.children[i].innerText;
         const parsedAmount = violation.substring(0, violation.indexOf(" ")).slice(0, -1)
@@ -365,11 +363,11 @@ function addAkteCopyButton() {
       }
 
       await GM.setValue("beos_copycase", { violations: parsedViolations, template: editor.innerHTML.trim(), title: casetitle.innerText })
-      console.log("COPIED AKTE TO STORAGE.", { violations: parsedViolations, template: editor.innerHTML.trim(), title: casetitle.innerText })
+      console.log("COPIED CASE TO STORAGE.", { violations: parsedViolations, template: editor.innerHTML.trim(), title: casetitle.innerText })
     });
     element.appendChild(newButton);
   } else {
-    alert("ERROR ADDING AKTE COPYBUTTON.")
+    alert("ERROR ADDING CASE COPYBUTTON.")
   }
 }
 
@@ -390,15 +388,15 @@ function addAkteCopyButton() {
       // Aktensystem
       case "/Functions/Police/Function_NOL/AddCrime.php":
       case "/Functions/Police/Function_NOL/AddCrime.php/":
-        drowdownHeight(techConfig.selectorAkteDropdown)
+        drowdownHeight(techConfig.selectors.Case_Dropdown)
         editorHeight()
         await getPermanentInformation()
         for (let akte in loadedAkten) {
-          // Load Template
+          // Load template
           let template = loadedAkten[akte].template
 
           if (loadedSettings.replaceParameter) {
-            // Replace currentConfig.Parameter
+            // Replace loadedParameter
             for (let para in loadedParameter) {
               template = template.replaceAll(loadedParameter[para].placeholder, loadedParameter[para].value)
             }
@@ -409,16 +407,16 @@ function addAkteCopyButton() {
             }
           }
 
-          // Add Button
+          // Add template button
           addTemplateButton(loadedAkten[akte].buttonName, template)
         }
-        addAkteInsertButton()
+        addCaseInsertButton()
         addTemplateCopyButton()
         break;
       // Ticketsystem
       case "/Functions/Police/Function_Ticket/index.php":
       case "/Functions/Police/Function_Ticket/index.php/":
-        drowdownHeight(techConfig.selectorTicketDropdown)
+        drowdownHeight(techConfig.selectors.Ticket_Dropdown)
         break;
       // Strafregister
       case "/Functions/Police/Function_NOL/OffenderDetail.php":
@@ -428,7 +426,7 @@ function addAkteCopyButton() {
       // Strafakte
       case "/Functions/Police/Function_NOL/Detail2.php":
       case "/Functions/Police/Function_NOL/Detail2.php/":
-        addAkteCopyButton()
+        addCaseCopyButton()
         break;
       // Settings PopUp
       case "/App/index.php":
