@@ -4,7 +4,7 @@
 // @icon https://www.google.com/s2/favicons?sz=64&domain=emergencyos.de
 // @description Quality of Life changes for EmergencyOS.
 // @author Discord: _just2ez
-// @version 1.6
+// @version 1.7
 // @match *://*.emergencyos.de/*
 // @grant GM.getValue
 // @grant GM.setValue
