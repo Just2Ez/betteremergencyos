@@ -86,7 +86,7 @@ Folgende Parameter sind dauerhaft verwendbar und werde automatisch aktualisiert:
 - **`{datum}`**: Aktuelles Datum. Format: "DD.MM.YYYY"
 - **`{zeit}`**: Aktuelle Uhrzeit. Format: "hh:mm"
 - **`{suspectName}`**: Name des Tatverdächtigen. Format: "Vorname Nachname"
-- **`{suspectBirth}`**:Geburtsdatum des Tatverdächtigen. Format: "DD.MM.YYYY"
+- **`{suspectBirth}`**: Geburtsdatum des Tatverdächtigen. Format: "DD.MM.YYYY"
 
 > [!NOTE]
 > Weitere Parameter können nach belieben erstellt werden und sind anschließend in den Aktenvorlagen verwendbar.
