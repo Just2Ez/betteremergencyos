@@ -20,7 +20,7 @@ Ursprünglich erstellt für **[NarcoCity](https://discord.gg/narcocity)**, jedoc
 *v1.6 - 20.02.2025: Importieren und Exportieren der Konfiguration ermöglicht Teilen mit Nutzern.*\
 *v1.5 - 19.02.2025: Implementierung eines PopUp zur einfachen Konfiguration der Erweiterung.*\
 *v1.4 - 16.02.2025: Deutliche Verbesserung der Benutzerfreundlichkeit durch vollständigen Rework.*\
-*v1.0 - 23.11.2024: Initiierung von BetterEmergencyOS.*\</sub>
+*v1.0 - 23.11.2024: Initiierung von BetterEmergencyOS.*
 
 ## Features
 
